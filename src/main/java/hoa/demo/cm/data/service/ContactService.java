@@ -24,7 +24,7 @@ public class ContactService {
 		Root<ABContact> itemRoot = criteriaQuery.from(ABContact.class);
 
 		if (filteredEMail != null && !filteredEMail.isEmpty()) {
-			Predicate predicateForEmail = criteriaBuilder.like(itemRoot.get("email"), filteredEMail);
+			Predicate predicateForEmail = criteriaBuilder.like(itemRoot.get("email"), "%" + filteredEMail + "%");
 			criteriaQuery.where(predicateForEmail);
 		}
 
@@ -33,7 +33,6 @@ public class ContactService {
 			temp.removeIf(e -> !e.getDisplayName().contains(filteredName));
 
 		}
-		System.out.println("temp result " + temp.size());
 		return temp;
 	}
 }
