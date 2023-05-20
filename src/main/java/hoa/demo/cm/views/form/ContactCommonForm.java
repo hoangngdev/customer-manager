@@ -1,12 +1,10 @@
 package hoa.demo.cm.views.form;
 
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 
 import hoa.demo.cm.data.entity.ABContact;
-import hoa.demo.cm.data.entity.Person;
 
 public abstract class ContactCommonForm extends FormLayout {
 
@@ -18,5 +16,5 @@ public abstract class ContactCommonForm extends FormLayout {
 		add(email, telephone);
 	}
 
-	abstract protected BeanValidationBinder<? extends ABContact> getBinder();
+	public abstract BeanValidationBinder<? extends ABContact> getBinder();
 }

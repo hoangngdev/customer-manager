@@ -10,7 +10,6 @@ import com.vaadin.flow.spring.annotation.SpringComponent;
 
 import hoa.demo.cm.data.entity.ABContact;
 import hoa.demo.cm.data.repository.ContactRepository;
-import hoa.demo.cm.views.form.ContactCommonPage;
 import hoa.demo.cm.views.layout.InsideLayout;
 import jakarta.annotation.security.PermitAll;
 

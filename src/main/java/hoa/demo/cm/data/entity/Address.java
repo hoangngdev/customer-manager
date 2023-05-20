@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Address {
@@ -29,6 +30,7 @@ public class Address {
 	private String city;
 
 	@NotBlank
+	@Size(min = 5, max = 5)
 	private String potalcode;
 
 	public Long getId() {
@@ -73,6 +75,11 @@ public class Address {
 
 	public void setPotalcode(String potalcode) {
 		this.potalcode = potalcode;
+	}
+
+	public String getDisplayName() {
+		return new StringBuffer(street).append(" ").append(houseNumber).append(" , ").append(potalcode).append(" ")
+				.append(city).toString();
 	}
 
 	@Override

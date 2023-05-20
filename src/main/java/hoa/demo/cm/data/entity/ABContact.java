@@ -1,5 +1,6 @@
 package hoa.demo.cm.data.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 
 @Entity
@@ -27,13 +29,14 @@ public abstract class ABContact {
 	@Version
 	private int version;
 
+	@Email(message = "${validatedValue} is not a valid email")
 	private String email;
 
 	@NotEmpty
 	private String telephone;
 
 
-	@OneToOne
+	@OneToOne(orphanRemoval = false, cascade = CascadeType.ALL)
 	private Address primaryAddress;
 
 	public String getDisplayName() {
@@ -62,6 +65,20 @@ public abstract class ABContact {
 
 	public Address getPrimaryAddress() {
 		return primaryAddress;
+	}
+
+	public Address getOrCreatePrimaryAddress() {
+		if (primaryAddress != null) {
+			return primaryAddress;
+		} else {
+			Address newAddress = new Address();
+			this.primaryAddress = newAddress;
+			return newAddress;
+		}
+	}
+
+	public String getPrimaryAddressDisplayName() {
+		return primaryAddress != null ? primaryAddress.getDisplayName() : "";
 	}
 
 	public void setPrimaryAddress(Address primaryAddress) {

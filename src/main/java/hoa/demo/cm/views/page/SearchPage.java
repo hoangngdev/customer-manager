@@ -112,6 +112,8 @@ public class SearchPage extends VerticalLayout {
 
 		grid.addColumn(ABContact::getEmail).setHeader("E-mail");
 		
+		grid.addColumn(ABContact::getPrimaryAddressDisplayName).setHeader("Primary Address");
+
 		selectionModel.addMultiSelectionListener(e -> {
 			deleteButton.setEnabled(e.getAllSelectedItems().size() > 0);
 		});
