@@ -9,7 +9,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.Email;
@@ -22,8 +21,7 @@ import jakarta.validation.constraints.NotEmpty;
 public abstract class ABContact {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idgenerator_contact")
-	@SequenceGenerator(name = "idgenerator", initialValue = 1)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Version

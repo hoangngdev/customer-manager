@@ -13,8 +13,7 @@ import jakarta.validation.constraints.Size;
 public class Address {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idgenerator_address")
-	@SequenceGenerator(name = "idgenerator", initialValue = 1)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Version
